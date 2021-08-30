@@ -44,6 +44,23 @@ public class Card {
                 "%s\n", this.cardNumber, this.cardPin);
     }
 
+    public static int generateChecksum(String number) {
+        char[] chars = number.toCharArray();
+        int sum = 0;
+        for (int i = 0; i < chars.length; i++) {
+            //convert char to int
+            int num = Integer.parseInt(String.valueOf(chars[i]));
+            //if even (or odd if we count from 1), multiply by 2
+            num = i % 2 != 0 ? num : num * 2;
+            //if greater than 9, minus 9
+            num = num > 9 ? num - 9 : num;
+            //add sum
+            sum += num;
+        }
+        //return remainder
+        return sum % 10 == 0 ? 0 : 10 - (sum % 10);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

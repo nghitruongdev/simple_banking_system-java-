@@ -26,7 +26,8 @@ public class Bank {
     //create new account for customer
     private static void createAccount() {
         final int BIN = 400_000;
-        String cardNumber = BIN + MyNumber.getRandomNumberSequence(10);
+        String customerNumber = BIN + MyNumber.getRandomNumberSequence(9);
+        String cardNumber = customerNumber + Card.generateChecksum(customerNumber);
         String cardPin = MyNumber.getRandomNumberSequence(4);
 
         Card card = new Card(cardNumber, cardPin);
