@@ -3,7 +3,7 @@ package banking;
 import java.util.Scanner;
 
 public class MyInput {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static String readLine(String message){
         System.out.println(message);

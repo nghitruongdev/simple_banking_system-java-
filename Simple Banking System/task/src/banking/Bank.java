@@ -4,27 +4,26 @@ package banking;
 public class Bank {
 
     public static void menu() {
-        boolean isClosed = false;
-        while (!isClosed) {
+        while (true) {
             int select = MyInput.readInt("\n1. Create an account\n" +
                     "2. Log into account\n" +
                     "0. Exit");
             switch (select) {
                 case 1:
-                    createAccount();
+                    createCard();
                     break;
                 case 2:
                     logIn();
                     break;
                 default:
-                    isClosed = true;
                     System.out.println("\nBye!");
+                    return;
             }
         }
     }
 
-    //create new account for customer
-    private static void createAccount() {
+    //create new card for customer
+    private static void createCard() {
         final int BIN = 400_000;
         String customerNumber = BIN + MyNumber.getRandomNumberSequence(9);
         String cardNumber = customerNumber + Card.generateChecksum(customerNumber);
@@ -33,6 +32,7 @@ public class Bank {
         Card card = new Card(cardNumber, cardPin);
         Card.issuedCardList.add(card);
         System.out.println("\nYour card has been created");
+        MyDB.insertCard(card);
         card.showInfo();
     }
 

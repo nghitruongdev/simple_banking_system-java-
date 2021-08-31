@@ -19,9 +19,20 @@ public class Card {
         this.balance = balance;
     }
 
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public String getCardPin() {
+        return cardPin;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
     public void menu() {
-        boolean isClosed = false;
-        while (!isClosed) {
+        while (true) {
             int select = MyInput.readInt("\n1. Balance\n" +
                     "2. Log out\n" +
                     "0. Exit");
@@ -31,8 +42,9 @@ public class Card {
                     break;
                 case 2:
                     System.out.println("\nYou have successfully logged out!");
+                    return;
                 default:
-                    isClosed = true;
+                    System.exit(0);
             }
         }
     }
